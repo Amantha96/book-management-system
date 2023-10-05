@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ropa+Sans&display=swap");
+
+body {
+  font-family: "Ropa Sans", sans-serif;
+  background: rgb(6, 6, 6);
+  background: linear-gradient(
+    90deg,
+    rgba(6, 6, 6, 1) 0%,
+    rgba(36, 58, 84, 1) 40%,
+    rgba(36, 58, 84, 1) 60%,
+    rgba(6, 6, 6, 1) 100%
+  );
+}
+.app {
+  padding: 10px 20px;
+  color: white;
+}
+.app > h1 {
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 4px;
+  font-size: 40px;
+}
+
+.form-container {
+  background-color: #0c121c;
+  width: 30%;
+  margin: 10px auto;
+  text-align: center;
+  padding: 10px 5px;
+  padding-bottom: 40px;
+  border-radius: 5%;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+}
+.form-container > h2 {
+  text-align: center;
+}
+input {
+  height: 25px;
+  width: 70%;
+}
+.form-container > form > button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #FFD482;
+  border: none;
+  font-weight: bold;
+  width: 40%;
+}
+.form-container > form > button:hover {
+  background-color: #ffbc40;
+}
+
+.book-list {  
+  background-color: #0c121c;
+  width: 50%;
+  margin: 10px auto;
+  margin-top: 30px;
+  text-align: center;
+  padding: 10px 5px;
+  padding-bottom: 40px;
+  border-radius: 5%;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+}
+.book-list > table {
+  width: 90%;
+  margin: 10px auto;
+}
+.book-list > table > tr {
+  padding: 10px;
+}
+.book-list > table > tr > th {
+  background-color: #2357ff;
+  padding: 10px;
+}
+.book-list > table > tr > td{
+    padding: 10px;
+}
+.book-list > table > tr:nth-child(odd) {
+    background-color: #0e244981;
+}
+
+.delete-book{
+    text-align: left;
+    width: 90%;
+    margin: 10px auto;
+    margin-bottom: 30px;
+}
+.delete-input{
+    width:30%;
+    background-color: #2A2A2A;
+    border: none;
+    border-radius: 5px;
+    color:white;
+    padding-left: 10px;
+}
+.delete-book>button{
+    border: none;
+    background-color: #FFD482;
+    color: #0c121c;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-left:10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete-book>button:hover{
+    background-color: #ffbc40;
+}
