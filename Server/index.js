@@ -9,6 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 mongoose.connect("mongodb+srv://artwingdesigns2022:artwingdesigns2022@cluster0.xk7znyw.mongodb.net/bookdb?retryWrites=true&w=majority", {
+  
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

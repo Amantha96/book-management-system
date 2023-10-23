@@ -5,8 +5,11 @@ import BookServices from '../services/BookServices';
 
 function Form({booklist,setBooklist}) {
     const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
-    const [isbn, setIsbn] = useState("");
+const [author, setAuthor] = useState("");
+const [isbn, setIsbn] = useState("");
+const [isEditing, setIsEditing] = useState(false);
+
+
 
     const handleSubmit=(event)=>{
         event.preventDefault()
@@ -17,15 +20,35 @@ function Form({booklist,setBooklist}) {
             isbn: isbn
         }
 
+        if (isEditing) {
+            // Handle update here using BookServices.updateBook
+            BookServices.updateBook(isbn, book)
+              .then((res) => {
+                if (res.status === 200) {
+                  const updatedBook = res.data;
+                  const updatedList = booklist.map((item) =>
+                    item.isbn === isbn ? updatedBook : item
+                  );
+                  setBooklist(updatedList);
+                  setIsEditing(false);
+                } else {
+                  alert("Book with this ISBN already exists");
+                }
+              })
+              .catch((e) => {
+                console.log(e.message);
+                alert("Book with this ISBN already exists");
+              });
+            } else {
+
+
         BookServices.addBook(book).then((res)=>{
             if(res.status===201 || res.status===200){
                 // alert("added")
                 setBooklist([...booklist, res.data]);
-                setTitle("")
-                setAuthor("")
-                setIsbn("")
+
             }
-            else if(res.status===409){
+            else {
                 alert("Book with this ISBN already exists")
             }
         }).catch((e)=>{
@@ -34,6 +57,14 @@ function Form({booklist,setBooklist}) {
         })
        
     }
+
+    setIsEditing(false);
+    setTitle("");
+    setAuthor("");
+    setIsbn("");
+
+
+};
 
     return (
         <div className='form-container'>
@@ -66,7 +97,7 @@ function Form({booklist,setBooklist}) {
                         required
                     />
                 </div>
-                <button type="submit">Add Book</button>
+                <button type="submit">{isEditing ? "Update Book" : "Add Book"}</button>
             </form>
         </div>
     )

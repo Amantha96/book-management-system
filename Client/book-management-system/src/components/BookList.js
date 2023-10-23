@@ -1,20 +1,30 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import BookServices from '../services/BookServices';
 
-function BookList({booklist,setBooklist}) {
-    
-    const [isbn, setIsbn] = useState("");
+function BookList({ booklist, setBooklist }) {
 
-    const handleDelete=(e)=>{
+    const [title, setTitle] = useState("");
+    const [author, setAuthor] = useState(""); 
+    const [isbn, setIsbn] = useState("");
+    const [isEditing, setIsEditing] = useState(false);
+
+    const handleEdit = (book) => {
+        setIsbn(book.isbn);
+        setTitle(book.title);
+        setAuthor(book.author);
+    };
+
+
+    const handleDelete = (e) => {
         e.preventDefault()
         BookServices.deleteBook(isbn).then((res) => {
             console.log(res)
-            if(res.data.message==="Book deleted"){
+            if (res.data.message === "Book deleted") {
                 const filteredData = booklist.filter((book) => book.isbn !== isbn);
                 setBooklist(filteredData)
                 setIsbn("")
             }
-        }).catch((e)=>{
+        }).catch((e) => {
             alert("Invalid ISBN")
         })
     }
@@ -39,13 +49,21 @@ function BookList({booklist,setBooklist}) {
                     <th>Book Name</th>
                     <th>Author</th>
                     <th>ISBN</th>
+                    <th>Update</th>
                 </tr>
+
 
                 {booklist && booklist?.map((book) => (
                     <tr key={book.id}>
                         <td>{book.title}</td>
                         <td>{book.author}</td>
                         <td>{book.isbn}</td>
+
+                        <td className="Edit">
+                            <button onClick={() => handleEdit(book)}>Edit</button>
+                        </td>
+
+
                     </tr>
                 ))}
                 {/* <tr>
@@ -64,3 +82,4 @@ function BookList({booklist,setBooklist}) {
 }
 
 export default BookList
+

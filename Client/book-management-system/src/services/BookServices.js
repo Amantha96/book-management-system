@@ -3,12 +3,12 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_BACKEND_SERVER;
 
-const addBook = async (data) => {
+const addBook = async (book) => {
   //console.log(data);
   const response = await axios({
     method: "post",
     url: `${process.env.REACT_APP_BACKEND_SERVER}/add-new-book`,
-    data: data,
+    data: book,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
     },
@@ -24,6 +24,18 @@ const getAllBooks = async () => {
   });
   return response;
 }
+
+const updateBook = async (isbn, bookData) => {
+  const response = await axios({
+      method: "put",
+      url: `${process.env.REACT_APP_BACKEND_SERVER}/update/${isbn}`,
+      data: bookData,
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+  });
+  return response;
+};
 
 const deleteBook = async (isbn) => {
   const response = await axios({

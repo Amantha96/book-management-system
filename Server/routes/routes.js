@@ -36,6 +36,28 @@ router.post("/add-new-book", async (req, res) => {
 });
 
 
+router.put("/update/:isbn", async (req, res) => {
+  const isbn = req.params.isbn;
+
+  try {
+      // Find the book by ISBN and update its details
+      const updatedBook = await Book.findOneAndUpdate(
+          { isbn: isbn },
+          { title: req.body.title, author: req.body.author },
+          { new: true }
+      );
+
+      if (!updatedBook) {
+          res.status(404).json({ message: "Book not found" });
+      } else {
+          res.json(updatedBook);
+      }
+  } catch (err) {
+      res.status(500).json({ message: err.message });
+  }
+});
+
+
 // delete book
 router.delete("/delete/:isbn", async (req, res) => {
   const isbn = req.params.isbn;

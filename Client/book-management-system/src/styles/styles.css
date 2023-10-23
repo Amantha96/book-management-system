@@ -103,7 +103,29 @@ input {
     margin-left:10px;
     border-radius: 5px;
     cursor: pointer;
+  
 }
 .delete-book>button:hover{
     background-color: #ffbc40;
+}
+
+
+
+
+.Edit>button{
+
+  border: none;
+  background-color: #FFD482;
+  color: #0c121c;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 2px;
+
+}
+
+.Edit>button:hover{
+
+  background-color: #ffbc40;
+
+
 }
